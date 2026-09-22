@@ -11,15 +11,29 @@ portfolio/
 ├── index.html                     ← Startseite (Hero, Über mich, Erfahrung, Skills, Kontakt)
 ├── projects/
 │   ├── itm.html                   ← Projektseite "ITM"
-│   └── mindful-journey.html       ← Projektseite "Mindful Journey"
+│   ├── mindful-journey.html       ← Projektseite "Mindful Journey" (mit Figma-Prototyp)
+│   └── xletix.html                ← Storytelling-Case-Study zum XLETIX-Praktikum
 ├── assets/
-│   ├── css/style.css              ← komplettes Design-System (Farben, Typo, Layout)
-│   ├── js/main.js                 ← Menü, Live-Uhr, Scroll-Animationen
+│   ├── css/style.css              ← komplettes Design-System (Farben, Typo, Layout, Hell/Dunkel)
+│   ├── js/main.js                 ← Menü, Live-Uhr, Theme-Umschalter, Scroll-Animationen
 │   └── images/
 │       ├── itm/                   ← Bilder aus dem ITM-Projekt
-│       └── mindful/                ← hier eigene Screenshots der App ablegen
+│       ├── xletix/                ← Bilder aus dem XLETIX-Praktikumsbericht
+│       └── mindful/               ← Platz für eigene Screenshots der App
 └── README.md
 ```
+
+## Hell- und Dunkelmodus
+
+Oben rechts im Menü gibt es zwei kleine Kreis-Buttons (Sonne / Mond) zum Umschalten.
+Die Wahl wird im Browser gespeichert, sodass sie beim nächsten Besuch erhalten bleibt.
+Beide Varianten nutzen deine Markenfarben:
+
+- Dunkel: tiefes Plum `#461248` als Hintergrund, Orange `#f2a15f` als Akzent
+- Hell: Weiß `#ffffff` als Hintergrund, Weinrot `#a93747` als Akzent
+
+Alle Farben sind zentral als CSS-Variablen in `assets/css/style.css` hinterlegt (oben im
+`:root`-Block für Dunkel, im `[data-theme="light"]`-Block für Hell).
 
 ## Lokal ansehen
 
@@ -45,7 +59,11 @@ deployment" → Source: **Deploy from a branch** → Branch: **main** / Ordner: 
 
 ## Neues Projekt hinzufügen
 
-1. `projects/itm.html` kopieren und umbenennen, z. B. `projects/mein-projekt.html`.
+Es gibt jetzt drei Vorlagen zur Auswahl: `projects/itm.html` (klassische Case Study),
+`projects/xletix.html` (Storytelling mit vielen Bildern) und `projects/mindful-journey.html`
+(mit eingebettetem Prototyp). Einfach die passendste kopieren:
+
+1. Datei kopieren und umbenennen, z. B. `projects/mein-projekt.html`.
 2. Im neuen File: Titel, Texte, Bilder und Meta-Angaben (Rolle, Tools, Kontext) anpassen.
 3. Eigene Bilder in einen neuen Unterordner legen, z. B. `assets/images/mein-projekt/`.
 4. In `index.html` im Abschnitt `<!-- ============================= WORK ============================= -->`
@@ -54,17 +72,25 @@ deployment" → Source: **Deploy from a branch** → Branch: **main** / Ordner: 
    Platzhalter-Karte danach wieder ans Ende setzen, damit weiterhin "+ weitere Projekte"
    angezeigt wird.
 
-## Mindful-Journey-Screenshots ergänzen
+## Mindful Journey: Figma-Prototyp
 
-Die Seite `projects/mindful-journey.html` enthält aktuell drei Platzhalter-Kacheln
-(„Onboarding", „Home", „Übung"). Sobald du Screenshots aus Figma exportiert hast:
+Die Seite `projects/mindful-journey.html` bindet den echten Figma-Prototyp per `<iframe>`
+ein, direkt klickbar in der Seite. Falls sich der Figma-Link je ändert: neuen Link bei
+Figma über "Share → Embed" holen und die `src`-URL im `<iframe>` in `mindful-journey.html`
+ersetzen.
 
-1. Bilder nach `assets/images/mindful/` legen (z. B. `onboarding.png`, `home.png`, `uebung.png`).
-2. In `mindful-journey.html` die drei `<div class="app-mock">…</div>` durch
-   `<img src="../assets/images/mindful/onboarding.png" alt="…">` (in ein `.figure`-Div
-   gepackt wie bei den ITM-Bildern) ersetzen.
+## Marke: Logo, Slogan und Schriften
 
-## Farb- und Typografie-System
+- Dein Monogramm-Logo ist jetzt im Header jeder Seite eingebunden (`assets/images/brand/monogram.jpg`).
+- Dein LinkedIn-Banner mit dem Slogan „Menschen verstehen. Ideen gestalten. Wirkung schaffen."
+  erscheint als eigener Abschnitt auf der Startseite, direkt nach dem Marquee
+  (`assets/images/brand/banner.jpg`).
+- Schriften: Überschriften laufen über **Fraunces** (elegante Serifenschrift), Fließtext über
+  **Open Sans**. Hinweis: **TAN Pearl** ist kostenpflichtig und nur für den privaten Gebrauch
+  lizenzfrei, deshalb lässt sie sich nicht rechtssicher über eine freie Schriften-CDN einbinden.
+  Fraunces kommt ihr im Charakter (elegant, verspielte Serife) sehr nahe. Falls du eine
+  kommerzielle TAN-Pearl-Lizenz besitzt, kannst du die Schriftdateien (.otf/.woff2) hochladen,
+  dann binde ich sie per `@font-face` direkt ein statt Fraunces zu laden.
 
 - Hintergrund: `#0c0c0e`, Karten: `#17171b`, Linien: `#26262b`
 - Text: `#f3f1ed` (hell), `#a9a7a3` (gedimmt), `#6f6d6a` (schwach)

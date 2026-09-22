@@ -2,6 +2,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* Theme toggle (hell / dunkel) */
+  const root = document.documentElement;
+  const stored = localStorage.getItem('ek-theme');
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  const initialTheme = stored || (prefersLight ? 'light' : 'dark');
+  applyTheme(initialTheme);
+
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    document.querySelectorAll('.theme-toggle button').forEach(btn => {
+      btn.classList.toggle('is-active', btn.dataset.theme === theme);
+    });
+    localStorage.setItem('ek-theme', theme);
+  }
+
+  document.querySelectorAll('.theme-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
+  });
+
   /* Header scroll state */
   const header = document.querySelector('.site-header');
   const onScroll = () => {
